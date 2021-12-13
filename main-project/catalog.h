@@ -9,7 +9,7 @@ struct catalog
 {
     unsigned double cost;
     unsigned int quan;
-    char category;
+    char category[MAX_STRING_SIZE];
     char name[MAX_STRING_SIZE];
 };
 
