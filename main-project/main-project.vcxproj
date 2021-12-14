@@ -140,12 +140,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="file_reader.cpp" />
+    <ClCompile Include="filter_reader.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="catalog.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="file_reader.h" />
+    <ClInclude Include="filter_reader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

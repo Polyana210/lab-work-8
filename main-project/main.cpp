@@ -1,10 +1,26 @@
 #include <iostream>
-
-using namespace std;
-
 #include "catalog.h"
 #include "file_reader.h"
 #include "constants.h"
+#include"filter_reader.h"
+using namespace std;
+
+void out (catalog* prod){
+    /********** вывод информации о товаре **********/
+    cout << "Стоимость........: ";
+    // вывод стоимости
+    cout << prod->cost << '\n';
+    //вывод количества
+    cout << "Количество........: ";
+    cout << prod->quan << '\n';
+    cout << "Категория........: ";
+    //вывод категории
+    cout << prod->category << '\n';
+    cout << "Название........: ";
+    //вывод названия
+    cout << prod->name << '\n';
+    cout << '\n';
+}
 
 int main()
 {
@@ -19,22 +35,48 @@ int main()
     {
         read("data.txt",prod, size);
         cout << "***** Каталог товаров *****\n\n";
-        for (int i = 0; i < size; i++)
-        { /********** вывод информации о товаре **********/
-            cout << "Стоимость........: ";
-            // вывод стоимости
-            cout << prod[i]->cost<< '\n';
-            //вывод количества
-            cout << "Количество........: ";
-            cout << prod[i]->quan << '\n';
-            cout << "Категория........: ";
-            //вывод категории
-            cout << prod[i]->category << '\n';
-            cout << "Название........: ";
-            //вывод названия
-            cout << prod[i]->name << '\n';
-            cout << '\n';
+     /*   for (int i = 0; i < size; i++)
+        {
+            out(prod[i]);
+        }*/
+        bool (*check_function)(catalog*);
+
+
+        cout << "Выберите фильтрацию  : ";
+
+        int item;
+
+        cin >> item;
+        cout << '\n';
+        switch (item)
+        {
+        case 1:
+
+
+            check_function = check_book_promtovary;
+            cout << "*****   Результат фильрации 1    *****\n\n";
+            break;
+        case 2:
+            check_function = check_book_cost;
+            cout << "*****     Результат фильтрации 2    *****\n\n";
+            break;
+        default:
+            throw " Нет такой фильтрации ";
         }
+        int new_size;
+        catalog** filtered = filter(prod, size, check_function, new_size);
+        for (int i = 0; i < new_size; i++)
+        {
+            out(filtered[i]);
+        }
+        delete[] filtered;
+
+
+
+
+
+
+
         for (int i = 0; i < size; i++)
         {
             delete prod[i];
