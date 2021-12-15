@@ -3,6 +3,9 @@
 #include "file_reader.h"
 #include "constants.h"
 #include"filter_reader.h"
+#include"processing.h"
+#include <locale.h>
+#include <windows.h>
 using namespace std;
 
 void out (catalog* prod){
@@ -24,7 +27,8 @@ void out (catalog* prod){
 
 int main()
 {
-
+    SetConsoleOutputCP(1251);
+    SetConsoleCP(1251);
     setlocale(LC_ALL, "Russian");
     cout << "Лабораторная работа №8. GIT\n";
     cout << "Вариант №10. Каталог товаров\n";
@@ -35,10 +39,7 @@ int main()
     {
         read("data.txt",prod, size);
         cout << "***** Каталог товаров *****\n\n";
-     /*   for (int i = 0; i < size; i++)
-        {
-            out(prod[i]);
-        }*/
+    
         bool (*check_function)(catalog*);
 
 
@@ -70,11 +71,6 @@ int main()
             out(filtered[i]);
         }
         delete[] filtered;
-
-
-
-
-
 
 
         for (int i = 0; i < size; i++)
