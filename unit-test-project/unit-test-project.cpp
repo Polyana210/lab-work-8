@@ -7,12 +7,12 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 namespace unittestproject
 {
 
-	catalog* build_subscription(double cost1, unsigned int quan1, char category1[15])
+	catalog* build_subscription(double cost1, unsigned int quan1, char category1[MAX_STRING_SIZE])
 	{
 		catalog* prod = new catalog;
 		prod->cost = cost1;
 		prod->quan = quan1;
-		prod->category = category1;
+		prod->category[MAX_STRING_SIZE] = category1[MAX_STRING_SIZE];
 		return prod;
 	}
 
